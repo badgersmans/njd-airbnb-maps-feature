@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     left: 10,
     right: 10,
     flexDirection: 'row',
+    borderRadius: 10,
 
     // shadows
     shadowColor: "#000",
