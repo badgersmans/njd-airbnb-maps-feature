@@ -1,20 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { AppleMaps, GoogleMaps } from 'expo-maps';
+import { Platform, Text } from 'react-native';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  if (Platform.OS === 'ios') {
+    return <AppleMaps.View style={{ flex: 1 }} />;
+  } else if (Platform.OS === 'android') {
+    return <GoogleMaps.View style={{ flex: 1 }} />;
+  } else {
+    return <Text>Maps are only available on Android and iOS</Text>;
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
