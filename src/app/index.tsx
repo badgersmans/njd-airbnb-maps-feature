@@ -1,7 +1,9 @@
 import React from 'react';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { StyleSheet, View, Text } from 'react-native';
 import { dummy } from '@assets/data/dummy';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import CustomMarker from '@/components/CustomMarker';
+import ApartmentListItem from '@/components/ApartmentListItem';
 
 export default function App() {
   return (
@@ -17,21 +19,11 @@ export default function App() {
         }}
       >
         {dummy.map((item) => (
-          <Marker
-            key={item.id}
-            coordinate={{
-              longitude: item.longitude,
-              latitude: item.latitude
-            }}
-            title={item.title}
-            description={item.price.toString()}
-          >
-            <View style={styles.priceContainer}>
-              <Text style={styles.priceText}>RM {item.price}</Text>
-            </View>
-          </Marker>
+          <CustomMarker key={item.id} apartment={item}/>
         ))}
       </MapView>
+      {/* Display selected apartment */}
+      <ApartmentListItem apartment={dummy[0]}/>
     </View>
   );
 }
@@ -44,26 +36,4 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  priceContainer: {
-    backgroundColor: 'white',
-    paddingVertical: 5,
-    paddingHorizontal: 8,
-    borderRadius: 50,
-    borderWidth: 1,
-    borderColor: 'grey'
-
-    // shadows
-    // shadowColor: "#000",
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 2,
-    // },
-    // shadowOpacity: 0.25,
-    // shadowRadius: 3.84,
-    // elevation: 5,
-  },
-  priceText: {
-    fontWeight: 'bold',
-  }
-  
 });
