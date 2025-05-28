@@ -8,34 +8,28 @@ type ApartmentListItemProps = {
 
 export default function ApartmentListItem({apartment}: ApartmentListItemProps) {
   return (
-    <View style={styles.mapOverlayContainer}>
-      <View style={styles.container}>
-        <Image source={{uri: apartment.image}} style={styles.image}/>
-        <View style={styles.contentContainer}>
+    <View style={styles.card}>
+      <Image source={{uri: apartment.image}} style={styles.image}/>
+      <View style={styles.rightContainer}>
+        <View style={styles.iconAndTitleContainer}>
+          <Text style={styles.title}>{apartment.title}</Text>
+          <TouchableOpacity onPress={() => console.log('liked...')}>
+            <Ionicons name="heart-outline" size={24} color="black" />
+          </TouchableOpacity>
+        </View>
 
-          <View style={styles.iconAndTitleContainer}>
-            <Text style={styles.title}>{apartment.title}</Text>
-            <TouchableOpacity onPress={() => console.log('liked...')}>
-              <Ionicons name="heart-outline" size={24} color="black" />
-            </TouchableOpacity>
+        <Text style={styles.description}>{apartment.description}</Text>
+
+        <View style={styles.footerContainer}>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.price}>RM {apartment.price} </Text>
+            <Text style={styles.perNight}>night</Text>
           </View>
 
-          <View style={styles.descriptionContainer}>
-            <Text style={styles.description}>{apartment.description}</Text>
-            <Text style={styles.description}>{apartment.description}</Text>
-          </View>
-
-          <View style={styles.footerContainer}>
-            <View style={{flexDirection: 'row'}}>
-              <Text style={styles.price}>RM {apartment.price} </Text>
-              <Text style={styles.perNight}>night</Text>
-            </View>
-            
-            <View style={styles.ratingContainer}>
-              <FontAwesome name="star" size={17} color="black" />
-              <Text style={styles.rating}>{apartment.rating}</Text>
-              <Text style={styles.starCount}>({apartment.numberOfStars})</Text>
-            </View>
+          <View style={styles.ratingContainer}>
+            <FontAwesome name="star" size={17} color="black" />
+            <Text style={{}}>{apartment.rating}</Text>
+            <Text style={{}}>({apartment.numberOfStars})</Text>
           </View>
         </View>
       </View>
@@ -44,21 +38,15 @@ export default function ApartmentListItem({apartment}: ApartmentListItemProps) {
 }
 
 const styles = StyleSheet.create({
-   mapOverlayContainer: {
-    // backgroundColor: 'red',
-    // height: '100%',
+   card: {
+    backgroundColor: 'white',
     position: 'absolute',
     bottom: 50,
     left: 10,
     right: 10,
-    // padding: 10
-  },
-  container: {
     flexDirection: 'row',
-    backgroundColor: 'white',
-    borderRadius: 10,
-    // shadows
 
+    // shadows
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -68,14 +56,14 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 5,
   },
-  contentContainer: {
-    // backgroundColor: 'red',
-    flex: 1,
-    paddingHorizontal: 10,
-
+  rightContainer: {
+    // backgroundColor: 'grey',
+    padding: 10,
+    paddingTop: 15,
+    flex: 1
   },
   image: {
-    height: '100%',
+    height: 150,
     aspectRatio: 1,
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
@@ -84,16 +72,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     // backgroundColor: 'red',
-    marginTop: 15
   },
   title: {
-    fontSize: 15,
-    fontWeight: '600'
-  },
-  descriptionContainer: {
-    gap: 8,
-    paddingBottom: 25,
-    // backgroundColor: 'red'
+    // fontSize: 15,
+    fontWeight: '600',
+    marginBottom: 10,
   },
   description: {
     fontSize: 14,
@@ -102,15 +85,12 @@ const styles = StyleSheet.create({
   price: {
     fontWeight: 'bold'
   },
-  perNight: {},
-  starCount: {},
-  rating: {},
   footerContainer: {
     flexDirection: 'row', 
     marginTop: 'auto',
     justifyContent: 'space-between',
-    paddingBottom: 10,
-    // backgroundColor: 'grey',
+    // paddingBottom: 10,
+    // backgroundColor: 'red',
   },
   ratingContainer: {
     flexDirection: 'row',
