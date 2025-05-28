@@ -1,47 +1,71 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { dummy } from '@assets/data/dummy';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE, AnimatedRegion, Animated } from 'react-native-maps';
 import CustomMarker from '@/components/CustomMarker';
 import ApartmentListItem from '@/components/ApartmentListItem';
-import BottomSheet, { BottomSheetFlatList, BottomSheetView } from '@gorhom/bottom-sheet';
+import BottomSheet, { BottomSheetFlatList } from '@gorhom/bottom-sheet';
 
 export default function MapsScreen() {
   const [selectedApartment, setSelectedApartment] = useState(null)
-  const snapPoints = useMemo(() => ['25%', '50%', '80%'], [])
+  const [mapRegion, setMapRegion] = useState({
+    longitude: 100.497027,
+    latitude: 13.759030,
+    latitudeDelta: 0.05, 
+    longitudeDelta: 0.04,
+  })
+
+  // Initialize animated region
+  const animatedRegion = useRef(new AnimatedRegion({
+    latitude: 13.759030,
+    longitude: 100.497027,
+    latitudeDelta: 0.05,
+    longitudeDelta: 0.04,
+  })).current;
+  const snapPoints = useMemo(() => [75, '25%', '50%', '90%'], [])
 
   return (
     <View style={styles.container}>
-      <MapView 
+      <Animated 
         style={styles.map} 
         provider={PROVIDER_GOOGLE}
-        initialRegion={{
-          longitude: 100.497027,
-          latitude: 13.759030,
-          latitudeDelta: 0.0922, 
-          longitudeDelta: 0.0421,
-        }}
+        region={mapRegion}
+        onRegionChange={setMapRegion}
       >
         {dummy.map((apartment) => (
           <CustomMarker key={apartment.id} apartment={apartment} onPress={() => setSelectedApartment(apartment)}/>
         ))}
-      </MapView>
+      </Animated>
       {/* Display selected apartment */}
       {selectedApartment && (
-        <ApartmentListItem apartment={selectedApartment} containerStyle={styles.nonListStyle}/>
+        <ApartmentListItem apartment={selectedApartment} containerStyle={{
+            position: 'absolute',
+            bottom: typeof snapPoints[0] === 'number' ? snapPoints[0] + 10 : 100,
+            left: 10,
+            right: 10,
+
+            // shadows
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 7,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 8,
+            elevation: 5,
+        }}/>
       )}
 
       <BottomSheet
         // ref={bottomSheetRef}
-        index={1}
+        index={0}
         snapPoints={snapPoints}
-        enablePanDownToClose
-        // onChange={handleSheetChanges}
+        onChange={() => console.log('on change')}
       >
-        {/* <BottomSheetView style={{}}>
-          <Text>Awesome 🎉</Text>
-        </BottomSheetView> */}
-      <BottomSheetFlatList
+        <View style={{flex: 1}}>
+          <Text style={styles.listTitle}>Over {dummy.length} places</Text>
+        </View>
+        <BottomSheetFlatList
           data={dummy}
           keyExtractor={(i) => i.id.toString()}
           renderItem={({item}) => (
@@ -49,7 +73,7 @@ export default function MapsScreen() {
           )}
           contentContainerStyle={{gap: 10, padding: 10}}
           showsVerticalScrollIndicator={false}
-      />
+        />
       </BottomSheet>
     </View>
   );
@@ -63,20 +87,11 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  nonListStyle: {
-    position: 'absolute',
-    bottom: 50,
-    left: 10,
-    right: 10,
-
-    // shadows
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 8,
-    elevation: 5,
+  listTitle: {
+    textAlign: 'center',
+    fontSize: 18,
+    fontWeight: '500',
+    marginTop: 10,
+    marginBottom: 30,
   }
 });

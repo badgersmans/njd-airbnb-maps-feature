@@ -7,7 +7,7 @@ type ApartmentListItemProps = {
   containerStyle?: ViewStyle
 }
 
-export default function ApartmentListItem({apartment, containerStyle = {}}: ApartmentListItemProps) {
+export default function ApartmentListItem({apartment, containerStyle}: ApartmentListItemProps) {
   return (
     <View style={[styles.card, containerStyle]}>
       <Image source={{uri: apartment.image}} style={styles.image}/>
