@@ -1,14 +1,15 @@
 import { Apartment } from '@/types/types'
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity, ViewStyle } from 'react-native'
 import {Ionicons, FontAwesome} from '@expo/vector-icons';
 
 type ApartmentListItemProps = {
-  apartment: Apartment
+  apartment: Apartment,
+  containerStyle?: ViewStyle
 }
 
-export default function ApartmentListItem({apartment}: ApartmentListItemProps) {
+export default function ApartmentListItem({apartment, containerStyle = {}}: ApartmentListItemProps) {
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, containerStyle]}>
       <Image source={{uri: apartment.image}} style={styles.image}/>
       <View style={styles.rightContainer}>
         <View style={styles.iconAndTitleContainer}>
@@ -40,22 +41,8 @@ export default function ApartmentListItem({apartment}: ApartmentListItemProps) {
 const styles = StyleSheet.create({
    card: {
     backgroundColor: 'white',
-    position: 'absolute',
-    bottom: 50,
-    left: 10,
-    right: 10,
     flexDirection: 'row',
     borderRadius: 10,
-
-    // shadows
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 8,
-    elevation: 5,
   },
   rightContainer: {
     // backgroundColor: 'grey',

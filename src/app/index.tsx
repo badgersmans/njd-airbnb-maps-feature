@@ -4,17 +4,14 @@ import { dummy } from '@assets/data/dummy';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import CustomMarker from '@/components/CustomMarker';
 import ApartmentListItem from '@/components/ApartmentListItem';
-import { Stack } from 'expo-router';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
+import BottomSheet, { BottomSheetFlatList, BottomSheetView } from '@gorhom/bottom-sheet';
 
 export default function MapsScreen() {
   const [selectedApartment, setSelectedApartment] = useState(null)
-  const snapPoints = useMemo(() => ['25%', '50%'], [])
+  const snapPoints = useMemo(() => ['25%', '50%', '80%'], [])
 
   return (
     <View style={styles.container}>
-      <Stack.Screen options={{title: 'Maps'}} />
       <MapView 
         style={styles.map} 
         provider={PROVIDER_GOOGLE}
@@ -31,17 +28,28 @@ export default function MapsScreen() {
       </MapView>
       {/* Display selected apartment */}
       {selectedApartment && (
-        <ApartmentListItem apartment={selectedApartment}/>
+        <ApartmentListItem apartment={selectedApartment} containerStyle={styles.nonListStyle}/>
       )}
 
       <BottomSheet
         // ref={bottomSheetRef}
+        index={1}
         snapPoints={snapPoints}
+        enablePanDownToClose
         // onChange={handleSheetChanges}
       >
-        <BottomSheetView style={{}}>
+        {/* <BottomSheetView style={{}}>
           <Text>Awesome 🎉</Text>
-        </BottomSheetView>
+        </BottomSheetView> */}
+      <BottomSheetFlatList
+          data={dummy}
+          keyExtractor={(i) => i.id.toString()}
+          renderItem={({item}) => (
+            <ApartmentListItem apartment={item}/>
+          )}
+          contentContainerStyle={{gap: 10, padding: 10}}
+          showsVerticalScrollIndicator={false}
+      />
       </BottomSheet>
     </View>
   );
@@ -55,4 +63,20 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
+  nonListStyle: {
+    position: 'absolute',
+    bottom: 50,
+    left: 10,
+    right: 10,
+
+    // shadows
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 8,
+    elevation: 5,
+  }
 });

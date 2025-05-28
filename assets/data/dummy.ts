@@ -19,7 +19,7 @@ export const dummy = [
     "description": "Some description...",
     "numberOfStars": 4,
     "rating": 4.5,
-    "image": "https://images.unsplash.com/photo-1600585154340-9c3cc7781d3d"
+    "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
   },
   {
     "id": 3,
@@ -30,7 +30,7 @@ export const dummy = [
     "description": "Some description...",
     "numberOfStars": 5,
     "rating": 4.9,
-    "image": "https://images.unsplash.com/photo-1618220179428-22790fbc4d3d"
+    "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
   },
   {
     "id": 4,
@@ -41,7 +41,7 @@ export const dummy = [
     "description": "Some description...",
     "numberOfStars": 3,
     "rating": 4.1,
-    "image": "https://images.unsplash.com/photo-1586190848861-99aa4a171e90"
+    "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
   },
   {
     "id": 5,
@@ -52,7 +52,7 @@ export const dummy = [
     "description": "Some description...",
     "numberOfStars": 4,
     "rating": 4.7,
-    "image": "https://images.unsplash.com/photo-1613977257363-707ba9348229"
+    "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
   },
   {
     "id": 6,
@@ -63,7 +63,7 @@ export const dummy = [
     "description": "Some description...",
     "numberOfStars": 5,
     "rating": 5.0,
-    "image": "https://images.unsplash.com/photo-1599422314077-f4dfdaa4cd5c"
+    "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
   },
   {
     "id": 7,
@@ -74,7 +74,7 @@ export const dummy = [
     "description": "Some description...",
     "numberOfStars": 4,
     "rating": 4.6,
-    "image": "https://images.unsplash.com/photo-1595526114035-94c5d4b5cc1c"
+    "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
   },
   {
     "id": 8,
@@ -85,7 +85,7 @@ export const dummy = [
     "description": "Some description...",
     "numberOfStars": 3,
     "rating": 4.3,
-    "image": "https://images.unsplash.com/photo-1590490360187-4b98c0b4ad74"
+    "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
   },
   {
     "id": 9,
@@ -96,7 +96,7 @@ export const dummy = [
     "description": "Some description...",
     "numberOfStars": 5,
     "rating": 4.9,
-    "image": "https://images.unsplash.com/photo-1600585154256-c7f6e5c3e1fc"
+    "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
   },
   {
     "id": 10,
@@ -107,6 +107,6 @@ export const dummy = [
     "description": "Some description...",
     "numberOfStars": 4,
     "rating": 4.4,
-    "image": "https://images.unsplash.com/photo-1598928506311-c55dedc51472"
+    "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
   }
 ]
