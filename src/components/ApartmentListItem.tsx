@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'red',
   },
   title: {
-    // fontSize: 15,
+    // fontSize: 14,
     fontWeight: '600',
     marginBottom: 10,
   },

@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from 'react-native'
 import { Marker } from 'react-native-maps';
 
-export default function CustomMarker({ apartment }) {
+export default function CustomMarker({ apartment, onPress }) {
   return (
     <Marker
       key={apartment.id}
@@ -9,6 +9,7 @@ export default function CustomMarker({ apartment }) {
         longitude: apartment.longitude,
         latitude: apartment.latitude
       }}
+      onPress={onPress}
     >
       <View style={styles.priceContainer}>
         <Text style={styles.priceText}>RM {apartment.price}</Text>

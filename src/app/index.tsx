@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { dummy } from '@assets/data/dummy';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import CustomMarker from '@/components/CustomMarker';
 import ApartmentListItem from '@/components/ApartmentListItem';
 
-export default function App() {
+export default function MapsScreen() {
+  const [selectedApartment, setSelectedApartment] = useState(null)
+
   return (
     <View style={styles.container}>
       <MapView 
@@ -18,12 +20,14 @@ export default function App() {
           longitudeDelta: 0.0421,
         }}
       >
-        {dummy.map((item) => (
-          <CustomMarker key={item.id} apartment={item}/>
+        {dummy.map((apartment) => (
+          <CustomMarker key={apartment.id} apartment={apartment} onPress={() => setSelectedApartment(apartment)}/>
         ))}
       </MapView>
       {/* Display selected apartment */}
-      <ApartmentListItem apartment={dummy[0]}/>
+      {selectedApartment && (
+        <ApartmentListItem apartment={selectedApartment}/>
+      )}
     </View>
   );
 }
