@@ -95,7 +95,10 @@ const styles = StyleSheet.create({
     paddingBottom: 25,
     // backgroundColor: 'red'
   },
-  description: {},
+  description: {
+    fontSize: 14,
+    color: 'grey'
+  },
   price: {
     fontWeight: 'bold'
   },
